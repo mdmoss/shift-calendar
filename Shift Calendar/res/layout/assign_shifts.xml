@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/assign_shifts_symbol"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="A"
+        android:textSize="24sp"
+        android:padding="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+    </TextView>
+    
+    <Spinner
+        android:id="@+id/assign_shifts_shift_selector"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/assign_shifts_symbol">
+    </Spinner>
+    
+    <com.projects.shiftcalendar.CalendarView
+        android:id="@+id/assign_shifts_calendar"
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_above="@id/assign_shifts_shift_selector">
+    </com.projects.shiftcalendar.CalendarView>
+    
+</RelativeLayout>

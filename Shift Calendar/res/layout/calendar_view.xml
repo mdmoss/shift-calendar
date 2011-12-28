@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/month_bar_container"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    
+    <TextView
+        android:id="@+id/month_bar_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:paddingLeft="12dp"
+        android:paddingTop="6dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="7dp">
+        
+    </TextView>
+
+    <TextView
+        android:id="@+id/month_bar_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        android:paddingLeft="16dp"
+        android:paddingTop="6dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="7dp">
+        
+    </TextView>
+        
+    <TextView
+        android:id="@+id/month_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="December 2011"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/month_bar_left"
+        android:layout_toLeftOf="@id/month_bar_right">
+    </TextView>
+
+    </RelativeLayout>    
+        
+    <LinearLayout
+        android:clickable="false"
+        android:id="@+id/day_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:layout_below="@id/month_bar_container">
+
+        <TextView
+            android:id="@+id/day_bar_mon"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Mon">
+        </TextView>
+
+        <TextView
+            android:id="@+id/day_bar_tue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Tue">
+        </TextView>
+        <TextView
+            android:id="@+id/day_bar_wed"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Wed">
+        </TextView>
+        <TextView
+            android:id="@+id/day_bar_thu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Thu">
+        </TextView>
+        <TextView
+            android:id="@+id/day_bar_fri"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Fri">
+        </TextView>
+        <TextView
+            android:id="@+id/day_bar_sat"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sat">
+        </TextView>
+        <TextView
+            android:id="@+id/day_bar_sun"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sun">
+        </TextView>
+
+    </LinearLayout>
+
+	<com.projects.shiftcalendar.DateSquare 
+	    android:id="@+id/DateSquare"
+	    android:layout_height="fill_parent"
+	    android:layout_width="fill_parent"
+	    android:layout_below="@id/day_bar">
+	</com.projects.shiftcalendar.DateSquare>
+    
+</RelativeLayout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent">
+		    
+    <LinearLayout
+	    android:id="@+id/button_bar"
+	    android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_alignParentBottom="true"
+		android:weightSum="2">
+		
+	    <Button 
+	        android:id="@+id/modify_shift_save"
+	        android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Save">
+	    </Button>
+	
+	    <Button 
+	        android:id="@+id/modify_shift_cancel"
+	        android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Cancel">
+	    </Button>
+	    
+	</LinearLayout>
+   
+	<ScrollView
+	    android:id="@+id/modify_shift_control_box"
+	    android:layout_height="fill_parent"
+	    android:layout_width="fill_parent"
+	    android:layout_above="@id/button_bar">
+	    
+		<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent">
+		    
+		    <EditText
+		        android:id="@+id/modify_shift_name"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentTop="true"
+		        android:maxLines="1"
+		        android:inputType="text"
+		        android:hint="Shift Name">
+		    </EditText>
+		    
+		    <LinearLayout
+		        android:id="@+id/symbol_bar"
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:orientation="horizontal"
+		    	android:weightSum="3"
+		    	android:layout_below="@id/modify_shift_name">
+		        
+		        <TextView
+		        	android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_weight="1"
+		    		android:text="Symbol"
+		    		android:textSize="16sp"
+		    		android:padding="8dp">
+		        </TextView>
+		
+		        <EditText
+		            android:id="@+id/modify_shift_symbol"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:maxLength="1"
+		            android:maxLines="1"
+		            android:inputType="text">
+		        </EditText>
+		        
+		    </LinearLayout>
+		    
+		    <TextView
+		        android:id="@+id/color_caption"
+		    	android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/symbol_bar"
+				android:text="Color"
+				android:textSize="16sp"
+				android:padding="8dp">
+		    </TextView>
+		        
+		    <Spinner 
+		        android:id="@+id/modify_shift_choose_color"
+		        android:layout_height="wrap_content"
+		        android:layout_width="fill_parent"
+		    	android:layout_below="@id/color_caption">
+		    </Spinner>
+		    <LinearLayout 
+		        android:id="@+id/time_bar_start"
+		        android:layout_height="wrap_content"
+		        android:layout_width="fill_parent"
+		        android:layout_below="@id/modify_shift_choose_color"
+		        android:weightSum="3">
+		        
+		        <TextView
+		        	android:id="@+id/modify_shift_start_time_caption"
+		    		android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+		            android:text="Start Time"
+		            android:textSize="16sp"
+		    		android:padding="8dp"
+		            android:layout_weight="1">
+		            
+		        </TextView>
+		        
+		        <TextView
+		        	android:id="@+id/modify_shift_start_time"
+		    		android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+		            android:text="00:00pm"
+		            android:textSize="16sp"
+		    		android:padding="8dp"
+		            android:layout_weight="1">
+		            
+		        </TextView>
+		        
+		        <Button
+		            android:id="@+id/modify_shift_start_time_button"
+		            android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Change Time">
+		            
+		        </Button>
+		        
+		    </LinearLayout>
+		    
+		    <LinearLayout 
+		        android:id="@+id/time_bar_end"
+		        android:layout_height="wrap_content"
+		        android:layout_width="fill_parent"
+		        android:layout_below="@id/time_bar_start"
+		        android:weightSum="3">
+		        
+		        <TextView
+		        	android:id="@+id/modify_shift_end_time_caption"
+		    		android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+		            android:text="End Time"
+		            android:textSize="16sp"
+		    		android:padding="8dp"
+		            android:layout_weight="1">
+		            
+		        </TextView>
+		        
+		        <TextView
+		        	android:id="@+id/modify_shift_end_time"
+		    		android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+		            android:text="00:00pm"
+		            android:textSize="16sp"
+		    		android:padding="8dp"
+		            android:layout_weight="1">
+		            
+		        </TextView>
+		        
+		        <Button
+		            android:id="@+id/modify_shift_end_time_button"
+		            android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Change Time">
+		            
+		        </Button>
+		        
+		    </LinearLayout>		        
+		    
+		    <TextView
+		        android:id="@+id/comment_caption"
+		    	android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="Comments"
+				android:textSize="16sp"
+				android:padding="8dp"
+				android:layout_below="@id/time_bar_end">
+		    </TextView>    
+		        
+		    <EditText
+		        android:id="@+id/modify_shift_comment"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:layout_below="@id/comment_caption"
+		        android:inputType="textMultiLine">
+
+		    </EditText>
+	
+		</RelativeLayout>
+		
+	</ScrollView>
+
+</RelativeLayout>
