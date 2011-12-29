@@ -241,6 +241,7 @@ public class ShiftCalDB {
 	
 	public Shift getShiftByDate (Date d) {
 		
+		System.err.println("Date given:" + d.toGMTString());
 		
 		String[] colList = {KEY_DATES_SHIFTID};
 		
@@ -254,6 +255,7 @@ public class ShiftCalDB {
 		Shift s;
 		
 		if (cursor.moveToFirst()) {
+			System.err.println("Valid result");
 			s = getShiftByID(cursor.getInt(cursor.getColumnIndex(KEY_DATES_SHIFTID)));
 		} else {
 			s = null;
