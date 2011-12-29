@@ -287,10 +287,14 @@ public class ShiftCalDB {
 			d.shiftId = cursor.getInt(cursor.getColumnIndex(KEY_DATES_SHIFTID));
 			
 			Shift s = this.getShiftByID(d.shiftId);
-			d.shiftSymbol = s.symbol;
-			d.shiftColor = s.color;
 			
-			daysList.add (d);
+			if (s != null) {
+			
+				d.shiftSymbol = s.symbol;
+				d.shiftColor = s.color;
+			
+				daysList.add (d);
+			}
 		}
 		
 		cursor.close();

@@ -55,19 +55,22 @@ public class AssignShifts extends Activity {
 				Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
 				Shift selected = (Shift) shiftSelector.getSelectedItem();
 				
-				Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
-				
-				if (sh == null) {
+				if (selected != null) {
+					Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
 					
 					db.setDayShift(newDay);
-				} else {
+
+					if (sh == null) {
+						db.clearDay(focus);
+						db.setDayShift (newDay);
 					
-					db.clearDay(focus);
-					
-					if (sh.id != selected.id) {
-						
+					} else if (sh.id != selected.id) {
+						db.clearDay(focus);
 						db.setDayShift (newDay);
 						
+					} else {
+						// Shifts are the same
+						db.clearDay(focus);
 					}
 					
 				}
@@ -88,6 +91,7 @@ public class AssignShifts extends Activity {
 			
 			symbolSpot.setText(selected.symbol);
 			symbolSpot.setTextColor(selected.color);
+			symbolSpot.setVisibility(View.VISIBLE);
 		}
 
 		public void onNothingSelected(AdapterView<?> arg0) {
