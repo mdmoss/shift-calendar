@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 public class DayView extends RelativeLayout {
 	
-	TextView date;
-	TextView label;
+	public static final int NO_DATE = -1;
+	
+	private int date = NO_DATE;
 	
 	public DayView (Context context) {
 		
@@ -24,10 +25,16 @@ public class DayView extends RelativeLayout {
 
 	}
 	
-	public void setDateText (String newtext) {
+	public void setDate (int newDate) {
 		
 		TextView t = (TextView) this.findViewById(R.id.day_view_date);
-		t.setText(newtext);
+		date = newDate;
+		
+		if (date != NO_DATE) {
+			t.setText(String.valueOf(newDate));
+		} else {
+			t.setText("");
+		}
 	}
 	
 	public void setDateColor (int newColor) {
@@ -50,16 +57,7 @@ public class DayView extends RelativeLayout {
 	
 	public int getDate () {
 		
-		int ret;
-		
-		try {
-			ret = Integer.parseInt((String) this.date.getText());
-		} catch (java.lang.NumberFormatException e) {
-			ret = 0;
-		} 
-		
-		return ret;
-	
+		return date;
 	}
 }
 

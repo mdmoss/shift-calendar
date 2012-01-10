@@ -67,18 +67,18 @@ public class CalendarView extends FrameLayout {
 				MarginLayoutParams dayMargins = (MarginLayoutParams) currentDay.getLayoutParams();
 				
 				if (y == 0 && x < XCoord) {
-					currentDay.setDateText ("");
+					currentDay.setDate (DayView.NO_DATE);
 					currentDay.setLabelText("");
 					dayMargins.setMargins(0, 0, 0, 0);
 					
 				} else if (daysDrawn < totalDays) {
-					currentDay.setDateText (Integer.toString(daysDrawn + 1));
+					currentDay.setDate (daysDrawn + 1);
 					daysDrawn++;
 					currentDay.setLabelText("");
 					dayMargins.setMargins(1, 1, 1, 1);
 					
 				} else {
-					currentDay.setDateText ("");
+					currentDay.setDate (DayView.NO_DATE);
 					currentDay.setLabelText("");
 					dayMargins.setMargins(0, 0, 0, 0);
 				}
