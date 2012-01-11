@@ -105,6 +105,12 @@ public class ShiftCalDB {
 		return this;
 	}
 	
+	public ShiftCalDB openRead() throws SQLException {
+		
+		this.db = DBHelper.getReadableDatabase();
+		return this;
+	}
+	
 	public void close() {
 		
 		DBHelper.close();
@@ -161,7 +167,7 @@ public class ShiftCalDB {
 
 	public int getEntryCount () {
 		
-		this.open();
+		this.openRead();
 		Cursor cursor = db.query (true, DATABASE_SHIFT_TABLE, null, "", null, "", "", "", "");
 		int entries = cursor.getCount();
 		cursor.close();
@@ -178,7 +184,7 @@ public class ShiftCalDB {
 		
 		String whereClause = KEY_ROWID + " = " + Integer.toString(id);
 		
-		this.open();
+		this.openRead();
 		
 		Cursor cursor = db.query(true, DATABASE_SHIFT_TABLE, colList, whereClause, null, null, null, null, null);
 		
@@ -212,7 +218,7 @@ public class ShiftCalDB {
 		String[] colList = {KEY_SHIFT_NAME, KEY_SHIFT_SYMBOL, KEY_SHIFT_COLOR, KEY_SHIFT_COMMENT, KEY_ROWID,
 	            KEY_SHIFT_START_HOURS, KEY_SHIFT_START_MINUTES, KEY_SHIFT_END_HOURS, KEY_SHIFT_END_MINUTES};
 		
-		this.open();
+		this.openRead();
 		
 		List<Shift> allShiftsList = new ArrayList<Shift>();
 		
@@ -246,7 +252,7 @@ public class ShiftCalDB {
 		String selection = KEY_DATES_YEAR + " = " + Integer.toString(d.getYear()) + " AND " + KEY_DATES_MONTH + " = "
 		                   + Integer.toString(d.getMonth()) + " AND " + KEY_DATES_DAY + " = " + Integer.toString(d.getDate());
 		
-		this.open();
+		this.openRead();
 		
 		Cursor cursor = db.query(true, DATABASE_DATES_TABLE, colList, selection, null, null, null, null, null);
 		
@@ -272,7 +278,7 @@ public class ShiftCalDB {
 		
 		String selection = KEY_DATES_YEAR + " = " + Integer.toString(ym.getYear()) + " AND " + KEY_DATES_MONTH + " = " + Integer.toString(ym.getMonth());
 		
-		this.open();
+		this.openRead();
 		
 		Cursor cursor = db.query(true, DATABASE_DATES_TABLE, colList, selection, null, null, null, null, null);
 			
