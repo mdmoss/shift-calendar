@@ -241,8 +241,6 @@ public class ShiftCalDB {
 	
 	public Shift getShiftByDate (Date d) {
 		
-		System.err.println("Date given:" + d.toGMTString());
-		
 		String[] colList = {KEY_DATES_SHIFTID};
 		
 		String selection = KEY_DATES_YEAR + " = " + Integer.toString(d.getYear()) + " AND " + KEY_DATES_MONTH + " = "

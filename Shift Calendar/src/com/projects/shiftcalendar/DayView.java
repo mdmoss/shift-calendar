@@ -22,7 +22,6 @@ public class DayView extends RelativeLayout {
 		
 		super (context, attrs);
 		LayoutInflater.from(getContext()).inflate(R.layout.day_view, this, true);
-
 	}
 	
 	public void setDate (int newDate) {

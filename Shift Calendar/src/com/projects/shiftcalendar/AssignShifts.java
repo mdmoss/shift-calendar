@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -38,13 +39,13 @@ public class AssignShifts extends Activity {
 	private OnClickListener DayPressListener = new OnClickListener() {
 		
 		public void onClick(View v) {
-
+			
 			// THere must be a better way
 			DayView dV = (DayView) v;
 			
 			// If the day is legit ie. actually a square
 			int date = dV.getDate();
-			if (date > 0) {
+			if (date != DayView.NO_DATE) {
 				
 				CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
 				
@@ -63,20 +64,24 @@ public class AssignShifts extends Activity {
 					if (sh == null) {
 						db.clearDay(focus);
 						db.setDayShift (newDay);
+						dV.setLabelText(newDay.shiftSymbol);
+						dV.setLabelColor(selected.color);
 					
 					} else if (sh.id != selected.id) {
 						db.clearDay(focus);
 						db.setDayShift (newDay);
+						dV.setLabelText(newDay.shiftSymbol);
+						dV.setLabelColor(selected.color);
 						
 					} else {
 						// Shifts are the same
 						db.clearDay(focus);
+						dV.setLabelText("");
 					}
 					
 				}
-				
-				cv.redrawCalendar();
 			}
+			
 		}
 	};
 	
@@ -104,6 +109,7 @@ public class AssignShifts extends Activity {
 	public void onCreate (Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.assign_shifts);
 		
 		View monthBarRight = findViewById(R.id.month_bar_right);
@@ -135,5 +141,4 @@ public class AssignShifts extends Activity {
 		}
 		
 	}
-	
 }

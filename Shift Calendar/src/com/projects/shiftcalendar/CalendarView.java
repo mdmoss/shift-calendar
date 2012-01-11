@@ -8,11 +8,10 @@ import java.util.List;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class CalendarView extends FrameLayout {
+public class CalendarView extends RelativeLayout {
 	
 	int month;
 	int year;
@@ -34,8 +33,7 @@ public class CalendarView extends FrameLayout {
 	
 	public void loadCalendar (Context context) {
 		
-		RelativeLayout internal = (RelativeLayout) View.inflate(context, R.layout.calendar_view, null);
-		this.addView (internal);
+		View.inflate(context, R.layout.calendar_view, this);
 		
 		Calendar cal = Calendar.getInstance();
 		this.ds = (DateSquare) findViewById(R.id.DateSquare);
