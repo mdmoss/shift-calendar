@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -24,6 +25,17 @@ public class ManageShifts extends Activity {
 			launchModifyShiftActivity(null);
 			
 		}
+	};
+	
+	private OnItemClickListener shiftClickListener = new OnItemClickListener() {
+
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			Shift toModify = listContent.getItem((int) arg3);
+			launchModifyShiftActivity(toModify);
+		}
+		
+		
 	};
 	
     /** Called when the activity is first created. */
@@ -42,8 +54,7 @@ public class ManageShifts extends Activity {
         ListView lv = (ListView) findViewById(R.id.shifts_list_listView);
         lv.setAdapter(listContent);
         registerForContextMenu(lv);
-        
-        
+        lv.setOnItemClickListener(shiftClickListener);
     }
     
     @Override
@@ -65,7 +76,6 @@ public class ManageShifts extends Activity {
 		Shift selectedItem = (Shift)lV.getAdapter().getItem(info.position);
 		menu.setHeaderTitle(selectedItem.name);
 		
-    	menu.add("Modify");
     	menu.add("Delete");
     	
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -83,7 +93,7 @@ public class ManageShifts extends Activity {
     		ShiftCalDB db = new ShiftCalDB(getApplicationContext());
     		db.deleteShift(attatchedShift.id);
     		listContent.notifyDataSetChanged();
-    	} else if (item.getTitle().equals("Modify")) {
+    	} else if (item.getTitle().equals("Modify")) { // Relic of an older system
     		
     		launchModifyShiftActivity(attatchedShift);
     		
