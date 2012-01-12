@@ -40,8 +40,6 @@ public class AssignShifts extends Activity {
 		
 		public void onClick(View v) {
 			
-			Debug.startMethodTracing("Set");
-			
 			// THere must be a better way
 			DayView dV = (DayView) v;
 			
@@ -96,8 +94,6 @@ public class AssignShifts extends Activity {
 					
 				}
 			}
-			
-		Debug.stopMethodTracing();
 		}
 	};
 	
