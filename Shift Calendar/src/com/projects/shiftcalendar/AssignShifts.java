@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -39,6 +40,8 @@ public class AssignShifts extends Activity {
 		
 		public void onClick(View v) {
 			
+			Debug.startMethodTracing("Set");
+			
 			// THere must be a better way
 			DayView dV = (DayView) v;
 			
@@ -46,16 +49,33 @@ public class AssignShifts extends Activity {
 			int date = dV.getDate();
 			if (date != DayView.NO_DATE) {
 				
+				Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
+				Shift selected = (Shift) shiftSelector.getSelectedItem();
+				
+				if (selected.id != dV.shiftId) {
+					// A new type of shift is selected, update UI
+					dV.setLabelText(selected.symbol);
+					dV.setLabelColor(selected.color);
+					
+				} else {
+					// Same shift is selected. Clear square
+					dV.setLabelText("");
+
+				}
+				
+				// Here's where the ASYNC will be, eventually.
+				
 				CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
 				
 				ShiftCalDB db = new ShiftCalDB(getApplicationContext());
 				Date focus = new Date (cv.year, cv.month, date);
 				Shift sh = db.getShiftByDate(focus);
 				
-				Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
-				Shift selected = (Shift) shiftSelector.getSelectedItem();
-				
 				if (selected != null) {
+					
+					// UI update first
+					
+					
 					Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
 					
 					db.setDayShift(newDay);
@@ -63,14 +83,10 @@ public class AssignShifts extends Activity {
 					if (sh == null) {
 						db.clearDay(focus);
 						db.setDayShift (newDay);
-						dV.setLabelText(newDay.shiftSymbol);
-						dV.setLabelColor(selected.color);
 					
 					} else if (sh.id != selected.id) {
 						db.clearDay(focus);
 						db.setDayShift (newDay);
-						dV.setLabelText(newDay.shiftSymbol);
-						dV.setLabelColor(selected.color);
 						
 					} else {
 						// Shifts are the same
@@ -81,6 +97,7 @@ public class AssignShifts extends Activity {
 				}
 			}
 			
+		Debug.stopMethodTracing();
 		}
 	};
 	

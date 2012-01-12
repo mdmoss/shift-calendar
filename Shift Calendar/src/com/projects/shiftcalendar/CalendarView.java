@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
+import android.os.Debug;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -127,6 +128,7 @@ public class CalendarView extends RelativeLayout {
 			DayView dv = (DayView) getDayView(draw.date);
 			dv.setLabelText(draw.shiftSymbol);
 			dv.setLabelColor(draw.shiftColor);
+			dv.shiftId = draw.shiftId;
 		}
 	}
 	

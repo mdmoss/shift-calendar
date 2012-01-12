@@ -9,8 +9,11 @@ import android.widget.TextView;
 public class DayView extends RelativeLayout {
 	
 	public static final int NO_DATE = -1;
+	public static final int NO_SHIFT = -1;
 	
 	private int date = NO_DATE;
+	
+	public int shiftId = NO_SHIFT;
 	
 	public DayView (Context context) {
 		
