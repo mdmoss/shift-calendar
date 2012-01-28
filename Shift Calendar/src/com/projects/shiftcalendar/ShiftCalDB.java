@@ -156,7 +156,7 @@ public class ShiftCalDB {
 		initialValues.put(KEY_SHIFT_START_HOURS, sh.startTime.hour);
 		initialValues.put(KEY_SHIFT_START_MINUTES, sh.startTime.minute);
 		initialValues.put(KEY_SHIFT_END_HOURS, sh.endTime.hour);
-		initialValues.put(KEY_SHIFT_END_MINUTES, sh.endTime.hour);
+		initialValues.put(KEY_SHIFT_END_MINUTES, sh.endTime.minute);
 		
 		String whereClause = KEY_ROWID + "=" + oldId;
 		

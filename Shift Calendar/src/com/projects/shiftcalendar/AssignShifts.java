@@ -49,51 +49,49 @@ public class AssignShifts extends Activity {
 				Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
 				Shift selected = (Shift) shiftSelector.getSelectedItem();
 				
-				System.err.println("aaaaa selected ID = " + selected.id);
-				System.err.println("aaaaa DayView ID = " + dV.shiftId);
-				
-				if (selected != null && selected.id != dV.shiftId) {
-					// A new type of shift is selected, update UI
-					dV.setLabelText(selected.symbol);
-					dV.setLabelColor(selected.color);
-					dV.shiftId = selected.id;
-					
-				} else if (selected != null && selected.id == dV.shiftId){
-					// Same shift is selected. Clear square
-					dV.setLabelText("");
-					dV.shiftId = DayView.NO_SHIFT;
-
-				}
-				
-				// Here's where the ASYNC will be, eventually.
-				
-				CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
-				
-				ShiftCalDB db = new ShiftCalDB(getApplicationContext());
-				Date focus = new Date (cv.year, cv.month, date);
-				Shift sh = db.getShiftByDate(focus);
-				
 				if (selected != null) {
-					
-					// UI update first
-
-					Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
-					
-					if (sh == null) {
-						db.clearDay(focus);
-						db.setDayShift (newDay);
-					
-					} else if (sh.id != selected.id) {
-						db.clearDay(focus);
-						db.setDayShift (newDay);
+				
+					if (selected.id != dV.shiftId) {
+						// A new type of shift is selected, update UI
+						dV.setLabelText(selected.symbol);
+						dV.setLabelColor(selected.color);
+						dV.shiftId = selected.id;
 						
-					} else {
-						// Shifts are the same
-						db.clearDay(focus);
+					} else if (selected.id == dV.shiftId){
+						// Same shift is selected. Clear square
+						dV.setLabelText("");
+						dV.shiftId = DayView.NO_SHIFT;
+	
 					}
 					
+					// Here's where the ASYNC will be, eventually.
 					
+					CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
 					
+					ShiftCalDB db = new ShiftCalDB(getApplicationContext());
+					Date focus = new Date (cv.year, cv.month, date);
+					Shift sh = db.getShiftByDate(focus);
+					
+					if (selected != null) {
+						
+						// UI update first
+	
+						Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
+						
+						if (sh == null) {
+							db.clearDay(focus);
+							db.setDayShift (newDay);
+						
+						} else if (sh.id != selected.id) {
+							db.clearDay(focus);
+							db.setDayShift (newDay);
+							
+						} else {
+							// Shifts are the same
+							db.clearDay(focus);
+						}
+						
+					}
 				}
 			}
 		}

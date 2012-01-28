@@ -182,7 +182,7 @@ public class ModifyShift extends Activity {
         	endTime.setHours(sh.endTime.hour);
 
         	EditText commentField = (EditText) findViewById(R.id.modify_shift_comment);
-        	commentField.setText(sh.name);
+        	commentField.setText(sh.comments);
         	
         }
         

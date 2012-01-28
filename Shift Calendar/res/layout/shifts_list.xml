@@ -12,7 +12,7 @@
 	        android:id="@+id/new_shift_button"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="Add Shift">
+	        android:text="New Shift Type">
 	    </Button>
     </LinearLayout>
 	  	    
