@@ -30,8 +30,8 @@
         
         <activity
             android:label="Assign Shifts"
-            android:name=".AssignShifts">
-            
+            android:name=".AssignShifts"
+            android:screenOrientation="portrait">
             
         </activity>
         

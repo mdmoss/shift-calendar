@@ -6,7 +6,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Debug;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -50,14 +49,19 @@ public class AssignShifts extends Activity {
 				Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
 				Shift selected = (Shift) shiftSelector.getSelectedItem();
 				
-				if (selected.id != dV.shiftId) {
+				System.err.println("aaaaa selected ID = " + selected.id);
+				System.err.println("aaaaa DayView ID = " + dV.shiftId);
+				
+				if (selected != null && selected.id != dV.shiftId) {
 					// A new type of shift is selected, update UI
 					dV.setLabelText(selected.symbol);
 					dV.setLabelColor(selected.color);
+					dV.shiftId = selected.id;
 					
-				} else {
+				} else if (selected != null && selected.id == dV.shiftId){
 					// Same shift is selected. Clear square
 					dV.setLabelText("");
+					dV.shiftId = DayView.NO_SHIFT;
 
 				}
 				
@@ -72,12 +76,9 @@ public class AssignShifts extends Activity {
 				if (selected != null) {
 					
 					// UI update first
-					
-					
+
 					Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
 					
-					db.setDayShift(newDay);
-
 					if (sh == null) {
 						db.clearDay(focus);
 						db.setDayShift (newDay);
@@ -89,8 +90,9 @@ public class AssignShifts extends Activity {
 					} else {
 						// Shifts are the same
 						db.clearDay(focus);
-						dV.setLabelText("");
 					}
+					
+					
 					
 				}
 			}
