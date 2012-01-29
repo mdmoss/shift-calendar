@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AssignShifts extends Activity {
 	
@@ -92,6 +93,10 @@ public class AssignShifts extends Activity {
 						}
 						
 					}
+				} else {
+					
+					Toast.makeText(getApplicationContext(), "You havn't set any shift types yet. Try the 'Manage Shift Types' button on the main menu", Toast.LENGTH_LONG).show();
+					
 				}
 			}
 		}

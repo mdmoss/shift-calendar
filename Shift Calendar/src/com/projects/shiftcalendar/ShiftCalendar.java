@@ -3,9 +3,11 @@ package com.projects.shiftcalendar;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class ShiftCalendar extends Activity {
 	
@@ -63,6 +65,16 @@ public class ShiftCalendar extends Activity {
 		
 		View viewMonthButton = findViewById(R.id.home_view_month);
 		viewMonthButton.setOnClickListener(viewMonthButtonClick);
+		
+		// Check for first run
+		SharedPreferences settings = getPreferences(MODE_PRIVATE);
+		if (settings.getBoolean("firstRun", true)) {
+			
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("firstRun", false);
+			editor.commit();
+			
+			Toast.makeText(getApplicationContext(), R.string.first_run_help_toast, Toast.LENGTH_LONG).show();
+		}
 	}
-	
 }

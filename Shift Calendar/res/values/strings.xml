@@ -3,6 +3,12 @@
 
     <string name="app_name">Shift Calendar</string>
     
+    <string name="manage_shifts_button">Manage Shift Types</string>
+    <string name="assign_shifts_button">Add Shifts to Calendar</string>
+    <string name="view_calendar_button">View Calendar</string>
+    
+    <string name="first_run_help_toast">Welcome to Shift Calendar! Start by making a new type of shift, by selecting \'Manage Shift Types\'</string>
+        
     <string-array name="colors_array">
         <item>Red</item>
         <item>Yellow</item>
