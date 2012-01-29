@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class ModifyShift extends Activity {
 	
@@ -83,9 +84,15 @@ public class ModifyShift extends Activity {
 					
 				}
 				
+				finish();
+				
+			} else {
+				
+				CharSequence helpText = "Please set a name for this shift";
+				Toast popup = Toast.makeText(getApplicationContext(), helpText, Toast.LENGTH_SHORT);
+				popup.show();
+				
 			}
-			
-			finish();
 			
 		}
 	};

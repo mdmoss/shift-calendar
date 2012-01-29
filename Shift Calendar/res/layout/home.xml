@@ -8,7 +8,7 @@
         android:id="@+id/home_manage_shifts"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:text="Manage Shifts">
+        android:text="Types of Shift">
         
     </Button>
     
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_below="@id/home_manage_shifts"
-        android:text="Assign Shifts">
+        android:text="Add Shifts to Calendar">
         
     </Button>
     
