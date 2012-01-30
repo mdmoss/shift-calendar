@@ -5,62 +5,38 @@ import java.util.List;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
-public class DateSquare extends LinearLayout {
+public class DateSquare extends TableLayout {
 	
-	LinearLayout rows[] = new LinearLayout[6];
+	TableRow rows[] = new TableRow[6];
 	DayView dates[][] = new DayView[6][7];
-	
-	Context context;
 	
 	public DateSquare (Context context, AttributeSet attrs) {
 		
 		super (context, attrs);
-		
-		this.setOrientation(VERTICAL);
-		this.setWeightSum(6);
+			
 		this.setBackgroundColor(0xFF444444);
-		
-		
-		this.context = context;
-		
+		this.setWeightSum(6);
+			
 		for (int i = 0; i < 6; i++) {
 			
-			rows[i] = new LinearLayout (context);
-			
-			LinearLayout.LayoutParams params = generateDefaultLayoutParams();
-			params.weight = 1;
-			rows[i].setLayoutParams (params);
+			rows[i] = new TableRow (context);
+			rows[i].setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1));
 			rows[i].setWeightSum(7);
-			
 			this.addView(rows[i]);
 			
 			for (int j = 0; j < 7; j++) {
-			
-				dates[i][j] = new DayView (context);
-				LayoutParams dateParams = generateDefaultLayoutParams();
-				dateParams.height = LayoutParams.FILL_PARENT;
-				dateParams.weight = 1;
 				
-				dateParams.leftMargin = 1;
-				if (j == 6) {
-					dateParams.rightMargin = 1;
-				}
-				
-				dateParams.topMargin = 1;
-				if (i == 5) {
-					dateParams.bottomMargin = 1;
-				}
-				
-				dates[i][j].setLayoutParams(dateParams);
-				dates[i][j].setBackgroundColor(0xFF000000);
-				dates[i][j].setPadding(8, 0, 0, 0);
-				
+				dates[i][j] = new DayView(context);
+				dates[i][j].setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1));
 				rows[i].addView(dates[i][j]);
+				
 			}
-		}	
-	}
+		}
+	}	
+	
 	
 	public DayView getSquareByPos (int x, int y) {
 	
