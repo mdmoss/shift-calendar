@@ -69,7 +69,7 @@ public class AssignShifts extends Activity {
 					
 					CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
 					
-					ShiftCalDB db = new ShiftCalDB(getApplicationContext());
+					ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
 					Date focus = new Date (cv.year, cv.month, date);
 					Shift sh = db.getShiftByDate(focus);
 					

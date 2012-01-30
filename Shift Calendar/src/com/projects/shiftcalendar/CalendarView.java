@@ -37,7 +37,7 @@ public class CalendarView extends RelativeLayout {
 		
 		Calendar cal = Calendar.getInstance();
 		this.ds = (DateSquare) findViewById(R.id.DateSquare);
-		this.db = new ShiftCalDB(context);
+		this.db = ((ShiftCalendar) context.getApplicationContext()).getDB();
 		
 		this.setCalendar(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
 	}

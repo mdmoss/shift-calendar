@@ -90,7 +90,7 @@ public class ManageShifts extends Activity {
     	
     	if (item.getTitle().equals("Delete")) {
     		
-    		ShiftCalDB db = new ShiftCalDB(getApplicationContext());
+    		ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
     		db.deleteShift(attatchedShift.id);
     		listContent.notifyDataSetChanged();
     	} else if (item.getTitle().equals("Modify")) { // Relic of an older system

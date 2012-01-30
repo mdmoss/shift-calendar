@@ -68,7 +68,7 @@ public class ModifyShift extends Activity {
 				}
 				
 				if (dbConnect == null) {
-					dbConnect = new ShiftCalDB(getApplicationContext());
+					dbConnect = ((ShiftCalendar) getApplication()).getDB();
 				}
 				
 				// If there's an old version, delete it.
@@ -158,7 +158,7 @@ public class ModifyShift extends Activity {
         	System.err.println("Intent has shift ID. Dealing ;)");
         	
         	int oldId = i.getIntExtra("Modify", 0);
-        	dbConnect = new ShiftCalDB(getApplicationContext());
+        	dbConnect = ((ShiftCalendar) getApplication()).getDB();
         	Shift sh = dbConnect.getShiftByID(oldId);
         	
         	EditText nameField = (EditText) findViewById(R.id.modify_shift_name);

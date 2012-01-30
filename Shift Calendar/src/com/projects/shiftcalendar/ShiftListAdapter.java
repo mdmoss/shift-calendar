@@ -19,7 +19,7 @@ public class ShiftListAdapter extends BaseAdapter {
 	public ShiftListAdapter (Context context) {
 		
 		this.context = context;
-		this.db = new ShiftCalDB (this.context);
+		this.db = ((ShiftCalendar) context.getApplicationContext()).getDB();
 		this.shiftList = db.getAllShifts();
 	}
 	
