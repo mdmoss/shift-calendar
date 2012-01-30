@@ -67,7 +67,12 @@ public class CalendarView extends RelativeLayout {
 				if (y == 0 && x < XCoord) {
 					currentDay.setDate (DayView.NO_DATE);
 					currentDay.setLabelText("");
-					dayMargins.setMargins(0, 0, 0, 0);
+					dayMargins.setMargins(0, 0, 0, 1);
+					
+					if (x == XCoord - 1) {
+						
+						dayMargins.rightMargin++;
+					}
 					
 				} else if (daysDrawn < totalDays) {
 					currentDay.setDate (daysDrawn + 1);
@@ -75,10 +80,45 @@ public class CalendarView extends RelativeLayout {
 					currentDay.setLabelText("");
 					dayMargins.setMargins(1, 1, 1, 1);
 					
+					if (y == 0) {
+						
+						dayMargins.topMargin++;
+					}
+					
+					if (x == 6) {
+						
+						dayMargins.rightMargin++;
+					}
+					
+					if (x == 0) {
+						
+						dayMargins.leftMargin++;
+					}
+					
+					if (y == 5) {
+						
+						dayMargins.bottomMargin++;
+					}
+					
+					
 				} else {
 					currentDay.setDate (DayView.NO_DATE);
 					currentDay.setLabelText("");
 					dayMargins.setMargins(0, 0, 0, 0);
+					
+					if (daysDrawn == totalDays) {
+						
+						dayMargins.leftMargin++;
+						
+					}
+					
+					if (daysDrawn < totalDays + 7) {
+						
+						dayMargins.topMargin++;
+						
+					}
+					
+					daysDrawn++;
 				}
 				
 				currentDay.setLayoutParams(dayMargins);
