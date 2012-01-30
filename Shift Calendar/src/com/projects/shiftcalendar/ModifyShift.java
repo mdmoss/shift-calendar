@@ -155,8 +155,6 @@ public class ModifyShift extends Activity {
         Intent i = getIntent();
         if (i.hasExtra("Modify")) {
         	
-        	System.err.println("Intent has shift ID. Dealing ;)");
-        	
         	int oldId = i.getIntExtra("Modify", 0);
         	dbConnect = ((ShiftCalendar) getApplication()).getDB();
         	Shift sh = dbConnect.getShiftByID(oldId);

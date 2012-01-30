@@ -15,7 +15,6 @@ import android.util.Log;
 
 public class ShiftCalDB {
 	
-	// Database Funsies
 	int id = 0;
 	public static final String KEY_ROWID = "_id";
 	
@@ -70,8 +69,6 @@ public class ShiftCalDB {
     	
     	this.context = context;
     	this.DBHelper = new DatabaseHelper (context);
-    	
-    	System.err.println("Database Connection Created!");
     }
 
 
