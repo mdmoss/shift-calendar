@@ -4,7 +4,8 @@
     android:id="@+id/day_square"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FF000000">
+    android:background="#FF000000"
+    android:paddingLeft="8dp">
     
     <TextView
         android:id="@+id/day_view_date"
