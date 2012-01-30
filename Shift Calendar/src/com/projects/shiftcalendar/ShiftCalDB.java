@@ -70,6 +70,8 @@ public class ShiftCalDB {
     	
     	this.context = context;
     	this.DBHelper = new DatabaseHelper (context);
+    	
+    	System.err.println("Database Connection Created!");
     }
 
 

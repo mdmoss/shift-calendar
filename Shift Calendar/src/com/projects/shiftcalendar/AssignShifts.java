@@ -141,7 +141,7 @@ public class AssignShifts extends Activity {
 		
 		Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
 		
-		ShiftCalDB db = new ShiftCalDB(getApplicationContext());
+		ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
 		List<Shift> shifts = db.getAllShifts();
 		ArrayAdapter<Shift> adapter = new ArrayAdapter<Shift> (getApplicationContext(), android.R.layout.simple_spinner_item, shifts);
 		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);

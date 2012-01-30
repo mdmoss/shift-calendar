@@ -6,15 +6,12 @@ public class ShiftCalendar extends Application {
 	
 	private ShiftCalDB db = null;
 	
-	@Override
-	public void onCreate() {
-		
-		super.onCreate();
-		db = new ShiftCalDB(getApplicationContext());
-	}
-	
 	public ShiftCalDB getDB () {
 		
+		if (db == null) {
+			db = new ShiftCalDB(getApplicationContext());
+		}
 		return db;
 	}
+	
 }
