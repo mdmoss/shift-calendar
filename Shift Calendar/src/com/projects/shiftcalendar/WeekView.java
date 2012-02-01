@@ -10,14 +10,11 @@ import android.widget.LinearLayout;
 
 public class WeekView extends LinearLayout {
 	
-	public WeekView (Context context) {
-		super (context);
-		this.layout();
-		
-	}
+	ShiftCalDB db;
 	
 	public WeekView (Context context, AttributeSet attrs) {
 		super (context, attrs);
+		this.db =((ShiftCalendar)context.getApplicationContext()).getDB();
 		this.layout();
 	}
 	
@@ -26,15 +23,13 @@ public class WeekView extends LinearLayout {
 		this.setOrientation(VERTICAL);
 		this.setWeightSum(7);
 		
-		// Here's the change - this will be troublesome
-		Date startOfWeek = new Date();
-		Date current = new Date();
-		Calendar c = Calendar.getInstance();
-		ShiftCalDB db = new ShiftCalDB(getContext());
+		Calendar rollingDate = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
+		Calendar tomorrow = Calendar.getInstance();
+		tomorrow.roll(Calendar.DATE, 1);
 		
-		SimpleDateFormat df = new SimpleDateFormat();
-		
-		int todayDrawn = 0;
+		SimpleDateFormat date = new SimpleDateFormat("dd");
+		SimpleDateFormat dayName = new SimpleDateFormat("EEEE");
 		
 		for (int i = 0; i < 7; i++) {
 			
@@ -46,38 +41,27 @@ public class WeekView extends LinearLayout {
 			
 			this.addView(bar);
 			
-			/*if (current.getDate() == startOfWeek.getDate() && 
-				current.getMonth() == startOfWeek.getMonth() &&
-				current.getYear() == startOfWeek.getYear() &&
-				todayDrawn == 0) {
-				
+			bar.date.setText(date.format(rollingDate.getTime()));
+			
+			if (rollingDate.get(Calendar.DATE) == today.get(Calendar.DATE)) {
 				bar.title.setText("Today");
-				todayDrawn = 1;
-				current.setDate (current.getDate() + 1);
-				
-			} else if (current.getDate() == startOfWeek.getDate() && 
-					current.getMonth() == startOfWeek.getMonth() &&
-					current.getYear() == startOfWeek.getYear()){
-				
+			} else if (rollingDate.get(Calendar.DATE) == tomorrow.get(Calendar.DATE)) {
 				bar.title.setText("Tomorrow");
+			} else {
+				bar.title.setText(dayName.format(rollingDate.getTime()));
+			}
 				
-			} else {*/
-				
-				bar.title.setText(df.format(startOfWeek));
-			//}
-			
-			
 			// Draw the shift symbol
-			Shift sh = db.getShiftByDate(startOfWeek);
+			Date query = rollingDate.getTime();
+			query.setYear(rollingDate.get(Calendar.YEAR));
+			Shift sh = db.getShiftByDate(query);
 			
 			if (sh != null) {
-				System.err.println("Shift Returned");
 				bar.symbol.setText(sh.symbol);
 				bar.symbol.setTextColor(sh.color);
 			}
 			
-			startOfWeek.setDate(startOfWeek.getDate() + 1);
-			
+			rollingDate.roll(Calendar.DATE, 1);
 		}
 		
 	}

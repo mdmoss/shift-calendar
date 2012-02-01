@@ -271,6 +271,8 @@ public class ShiftCalDB {
 	
 	public List<Day> getMonthShifts (Date ym) {
 		
+		System.err.println(ym.toString());
+		
 		List<Day> daysList = new ArrayList<Day>();
 	
 		String[] colList = {KEY_DATES_DAY, KEY_DATES_SHIFTID};

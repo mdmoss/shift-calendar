@@ -11,12 +11,12 @@ public class WeekViewBar extends FrameLayout {
 	
 	TextView title;
 	TextView symbol;
+	TextView date;
 	
 	public WeekViewBar (Context context) {
 	
 		super (context);
 		layout (context);
-	
 	}
 	
 	public WeekViewBar (Context context, AttributeSet attrs) {
@@ -33,6 +33,7 @@ public class WeekViewBar extends FrameLayout {
 		RelativeLayout internal = (RelativeLayout)inflater.inflate(R.layout.week_view_bar, null);
 		this.addView(internal);
 		
+		date = (TextView) findViewById (R.id.view_week_bar_date);
 		title = (TextView) findViewById(R.id.view_week_bar_title);
 		symbol = (TextView) findViewById(R.id.view_week_bar_symbol);
 	}

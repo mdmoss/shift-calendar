@@ -5,11 +5,20 @@
     android:layout_width="fill_parent">
     
     <TextView
+        android:id="@+id/view_week_bar_date"
+        android:layout_height="wrap_content"
+    	android:layout_width="wrap_content"
+    	android:text=""
+    	android:layout_alignParentLeft="true"
+    	android:padding="12dp"
+    	android:textSize="16sp" />
+    
+    <TextView
         android:id="@+id/view_week_bar_title"
         android:layout_height="wrap_content"
     	android:layout_width="wrap_content"
     	android:text="Title"
-    	android:layout_alignParentLeft="true"
+    	android:layout_toRightOf="@id/view_week_bar_date"
     	android:padding="12dp"
     	android:textSize="16sp" />
     
@@ -17,7 +26,7 @@
         android:id="@+id/view_week_bar_symbol"
         android:layout_height="wrap_content"
     	android:layout_width="wrap_content"
-    	android:text="S"
+    	android:text=""
     	android:layout_alignParentRight="true"
     	android:padding="10dp"
     	android:textSize="20sp" />
