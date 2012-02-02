@@ -29,6 +29,7 @@
     </Button>
     
     <com.projects.shiftcalendar.WeekView
+        android:id="@+id/home_week_view"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_below="@id/home_view_month">

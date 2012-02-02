@@ -11,10 +11,14 @@ import android.widget.LinearLayout;
 public class WeekView extends LinearLayout {
 	
 	ShiftCalDB db;
+	WeekViewBar bars[] = new WeekViewBar[7];
 	
 	public WeekView (Context context, AttributeSet attrs) {
 		super (context, attrs);
 		this.db =((ShiftCalendar)context.getApplicationContext()).getDB();
+		
+		this.setBackgroundColor(0xFFAAAAAA);
+		
 		this.layout();
 	}
 	
@@ -35,11 +39,13 @@ public class WeekView extends LinearLayout {
 			
 			LayoutParams params = generateDefaultLayoutParams();
 			params.weight = 1;
+			params.setMargins(0,1,0, 0);
 			
 			WeekViewBar bar = new WeekViewBar(getContext());
 			bar.setLayoutParams(params);
 			
 			this.addView(bar);
+			bars[i] = bar;
 			
 			bar.date.setText(date.format(rollingDate.getTime()));
 			
@@ -50,20 +56,28 @@ public class WeekView extends LinearLayout {
 			} else {
 				bar.title.setText(dayName.format(rollingDate.getTime()));
 			}
-				
-			// Draw the shift symbol
+			
+			rollingDate.roll(Calendar.DATE, 1);
+		}
+		
+	}
+	
+	public void update () {
+		
+		Calendar rollingDate = Calendar.getInstance();
+		
+		for (int i = 0; i < 7; i++) {
 			Date query = rollingDate.getTime();
 			query.setYear(rollingDate.get(Calendar.YEAR));
 			Shift sh = db.getShiftByDate(query);
 			
 			if (sh != null) {
-				bar.symbol.setText(sh.symbol);
-				bar.symbol.setTextColor(sh.color);
+				bars[i].symbol.setText(sh.symbol);
+				bars[i].symbol.setTextColor(sh.color);
 			}
-			
 			rollingDate.roll(Calendar.DATE, 1);
 		}
-		
+				
 	}
 	
 }

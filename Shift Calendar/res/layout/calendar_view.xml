@@ -55,66 +55,8 @@
         android:id="@+id/day_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="7"
+        android:weightSum="7"
         android:layout_below="@id/month_bar_container">
-
-        <TextView
-            android:id="@+id/day_bar_mon"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Mon">
-        </TextView>
-
-        <TextView
-            android:id="@+id/day_bar_tue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Tue">
-        </TextView>
-        <TextView
-            android:id="@+id/day_bar_wed"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Wed">
-        </TextView>
-        <TextView
-            android:id="@+id/day_bar_thu"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Thu">
-        </TextView>
-        <TextView
-            android:id="@+id/day_bar_fri"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Fri">
-        </TextView>
-        <TextView
-            android:id="@+id/day_bar_sat"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Sat">
-        </TextView>
-        <TextView
-            android:id="@+id/day_bar_sun"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Sun">
-        </TextView>
 
     </LinearLayout>
 

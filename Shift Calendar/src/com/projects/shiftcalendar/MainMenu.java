@@ -77,4 +77,14 @@ public class MainMenu extends Activity {
 			Toast.makeText(getApplicationContext(), R.string.first_run_help_toast, Toast.LENGTH_LONG).show();
 		}
 	}
+	
+	@Override
+	protected void onResume () {
+		
+		super.onResume();
+		WeekView wv = (WeekView) findViewById(R.id.home_week_view);
+		if (wv != null) {
+			wv.update();
+		}
+	}
 }

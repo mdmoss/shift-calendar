@@ -6,24 +6,35 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CalendarView extends RelativeLayout {
 	
+	static final int Monday = 0;
+	static final int Tuesday = 1;
+	static final int Wednesday = 2;
+	static final int Thursday = 3;
+	static final int Friday = 4;
+	static final int Saturday = 5;
+	static final int Sunday = 6;
+	
+	static final private String PREFERENCES_FILE = "ShiftCalendarCalendarViewPreferences";
+	
 	int month;
 	int year;
+	
+	int weekStartDay;
 	
 	DateSquare ds;
 	ShiftCalDB db;
 	
-	public CalendarView (Context context) {
-		
-		super (context);
-		loadCalendar(context);
-	}
+	TextView dayNames[] = new TextView[7];
 	
 	public CalendarView (Context context, AttributeSet attrs) {
 		
@@ -33,11 +44,29 @@ public class CalendarView extends RelativeLayout {
 	
 	public void loadCalendar (Context context) {
 		
+		this.weekStartDay = Monday;
+		
 		View.inflate(context, R.layout.calendar_view, this);
 		
 		Calendar cal = Calendar.getInstance();
 		this.ds = (DateSquare) findViewById(R.id.DateSquare);
 		this.db = ((ShiftCalendar) context.getApplicationContext()).getDB();
+		
+		LinearLayout dayNameBar = (LinearLayout) findViewById(R.id.day_bar);
+		
+		for (int i = 0; i < 7; i++) {
+			
+			this.dayNames[i] = (TextView) inflate (context, R.layout.calendar_view_day_name, null);
+			
+			dayNameBar.addView(dayNames[i]);
+			
+			LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) dayNames[i].getLayoutParams();
+			params.weight = 1;
+			params.width = LayoutParams.FILL_PARENT;
+			dayNames[i].setLayoutParams(params);
+			
+			dayNames[i].setGravity(Gravity.CENTER);
+		}
 		
 		this.setCalendar(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
 	}
@@ -152,8 +181,17 @@ public class CalendarView extends RelativeLayout {
 		
 		monthBar.setText(currentMonthName + " " + Integer.toString (year));
 		
-		// Draw the month's shifts
+		Resources res = getResources();
+		String[] dayTitles = res.getStringArray(R.array.short_day_names);
+		// Draw the day name column tops
+		for (int i = 0; i < 7; i++) {
+			
+			//Draw Location
+			dayNames[i].setText(dayTitles[(i + weekStartDay) % 7]);
+			
+		}
 		
+		// Draw the month's shifts
 		Date current = new Date();
 		current.setYear(cal.get(Calendar.YEAR));
 		current.setMonth(cal.get(Calendar.MONTH));
@@ -175,22 +213,22 @@ public class CalendarView extends RelativeLayout {
 		
 		Calendar cal = Calendar.getInstance();
 		cal.set (year, month, 1);
-		int firstDayRet = cal.get(Calendar.DAY_OF_WEEK);
+		int firstDay = cal.get(Calendar.DAY_OF_WEEK);
 		
-		int XCoord = 0;
+		int monCoord = 0;
 		
-		switch (firstDayRet) {
+		switch (firstDay) {
 		
-			case Calendar.MONDAY:    XCoord = 0; break;
-			case Calendar.TUESDAY:   XCoord = 1; break;
-			case Calendar.WEDNESDAY: XCoord = 2; break;
-			case Calendar.THURSDAY:  XCoord = 3; break;
-			case Calendar.FRIDAY:    XCoord = 4; break;
-			case Calendar.SATURDAY:  XCoord = 5; break;
-			case Calendar.SUNDAY:    XCoord = 6; break;
+			case Calendar.MONDAY:    monCoord = 0; break;
+			case Calendar.TUESDAY:   monCoord = 1; break;
+			case Calendar.WEDNESDAY: monCoord = 2; break;
+			case Calendar.THURSDAY:  monCoord = 3; break;
+			case Calendar.FRIDAY:    monCoord = 4; break;
+			case Calendar.SATURDAY:  monCoord = 5; break;
+			case Calendar.SUNDAY:    monCoord = 6; break;
 		}
 		
-		return XCoord;
+		return ((monCoord - weekStartDay) + (weekStartDay * 7)) % 7;
 	}
 	
 	private DayView getDayView (Date d) {
@@ -265,6 +303,12 @@ public class CalendarView extends RelativeLayout {
 	public void setYear (int newYear) {
 		
 		this.setCalendar(this.month, newYear);
+	}
+	
+	public void setWeekStart (int day) {
+		//Monday = 0, Tuesday = 1 etc...
+		this.weekStartDay = day;
+		redrawCalendar();
 	}
 }
 
