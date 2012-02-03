@@ -32,15 +32,11 @@ public class ViewMonth extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_month);
 		
-/*		View monthBarRight = findViewById(R.id.month_bar_right);
-		View weekBarMon = findViewById(R.id.day_bar_mon);
+		View monthBarRight = findViewById(R.id.month_bar_right);
 		monthBarRight.setOnClickListener(monthRight);
-		weekBarMon.setOnClickListener(monthLeft);
 		
 		View monthBarLeft = findViewById(R.id.month_bar_left);
-		View weekBarSun = findViewById(R.id.day_bar_sun);
 		monthBarLeft.setOnClickListener(monthLeft);
-		weekBarSun.setOnClickListener(monthRight);*/
 
 	}
 	

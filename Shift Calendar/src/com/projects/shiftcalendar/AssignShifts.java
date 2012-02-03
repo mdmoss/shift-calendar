@@ -129,15 +129,11 @@ public class AssignShifts extends Activity {
 		
 		setContentView(R.layout.assign_shifts);
 		
-/*		View monthBarRight = findViewById(R.id.month_bar_right);
-		View weekBarMon = findViewById(R.id.day_bar_mon);
+		View monthBarRight = findViewById(R.id.month_bar_right);
 		monthBarRight.setOnClickListener(monthRight);
-		weekBarMon.setOnClickListener(monthLeft);
 		
 		View monthBarLeft = findViewById(R.id.month_bar_left);
-		View weekBarSun = findViewById(R.id.day_bar_sun);
 		monthBarLeft.setOnClickListener(monthLeft);
-		weekBarSun.setOnClickListener(monthRight);*/
 		
 		Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
 		

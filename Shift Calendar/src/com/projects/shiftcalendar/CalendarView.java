@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -24,7 +25,8 @@ public class CalendarView extends RelativeLayout {
 	static final int Saturday = 5;
 	static final int Sunday = 6;
 	
-	static final private String PREFERENCES_FILE = "ShiftCalendarCalendarViewPreferences";
+	static final private String PREF_FILE = "ShiftCalendarCalendarViewPreferences";
+	static final private String PREF_KEY_WEEKSTART = "week start day";
 	
 	int month;
 	int year;
@@ -44,7 +46,8 @@ public class CalendarView extends RelativeLayout {
 	
 	public void loadCalendar (Context context) {
 		
-		this.weekStartDay = Monday;
+		SharedPreferences pref = context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+		this.weekStartDay = pref.getInt(PREF_KEY_WEEKSTART, CalendarView.Monday);
 		
 		View.inflate(context, R.layout.calendar_view, this);
 		
@@ -311,4 +314,3 @@ public class CalendarView extends RelativeLayout {
 		redrawCalendar();
 	}
 }
-
