@@ -12,7 +12,7 @@ public class Day {
 	public Day (int year, int month, int day, int shiftId, String shiftSymbol) {
 		
 		date = new Date();
-		date.setYear(year);
+		date.setYear(year - 1900);
 		date.setMonth(month);
 		date.setDate(day);
 		this.shiftId = shiftId;

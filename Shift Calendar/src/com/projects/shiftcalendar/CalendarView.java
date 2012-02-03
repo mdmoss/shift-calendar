@@ -194,10 +194,7 @@ public class CalendarView extends RelativeLayout {
 			
 		}
 		
-		// Draw the month's shifts
-		Date current = new Date();
-		current.setYear(cal.get(Calendar.YEAR));
-		current.setMonth(cal.get(Calendar.MONTH));
+		Date current = cal.getTime();
 		
 		List<Day> shifts = db.getMonthShifts(current);
 		Iterator<Day> d = shifts.iterator();
@@ -236,7 +233,7 @@ public class CalendarView extends RelativeLayout {
 	
 	private DayView getDayView (Date d) {
 		
-		int firstXCoord = getFirstXCoord(d.getYear(), d.getMonth());
+		int firstXCoord = getFirstXCoord(d.getYear() + 1900, d.getMonth());
 		int gap = d.getDate() - 1;
 		
 		int length = firstXCoord + gap;

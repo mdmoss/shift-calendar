@@ -1,5 +1,6 @@
 package com.projects.shiftcalendar;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -70,7 +71,12 @@ public class AssignShifts extends Activity {
 					CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
 					
 					ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
-					Date focus = new Date (cv.year, cv.month, date);
+					
+					Date focus = new Date();
+					focus.setYear(cv.year - 1900);
+					focus.setMonth(cv.month);
+					focus.setDate(date);
+					
 					Shift sh = db.getShiftByDate(focus);
 					
 					if (selected != null) {

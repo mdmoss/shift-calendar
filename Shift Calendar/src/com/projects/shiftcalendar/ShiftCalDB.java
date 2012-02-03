@@ -248,7 +248,7 @@ public class ShiftCalDB {
 		
 		String[] colList = {KEY_DATES_SHIFTID};
 		
-		String selection = KEY_DATES_YEAR + " = " + Integer.toString(d.getYear()) + " AND " + KEY_DATES_MONTH + " = "
+		String selection = KEY_DATES_YEAR + " = " + Integer.toString(d.getYear() + 1900) + " AND " + KEY_DATES_MONTH + " = "
 		                   + Integer.toString(d.getMonth()) + " AND " + KEY_DATES_DAY + " = " + Integer.toString(d.getDate());
 		
 		this.openRead();
@@ -258,7 +258,6 @@ public class ShiftCalDB {
 		Shift s;
 		
 		if (cursor.moveToFirst()) {
-			System.err.println("Valid result");
 			s = getShiftByID(cursor.getInt(cursor.getColumnIndex(KEY_DATES_SHIFTID)));
 		} else {
 			s = null;
@@ -271,13 +270,11 @@ public class ShiftCalDB {
 	
 	public List<Day> getMonthShifts (Date ym) {
 		
-		System.err.println(ym.toString());
-		
 		List<Day> daysList = new ArrayList<Day>();
 	
 		String[] colList = {KEY_DATES_DAY, KEY_DATES_SHIFTID};
 		
-		String selection = KEY_DATES_YEAR + " = " + Integer.toString(ym.getYear()) + " AND " + KEY_DATES_MONTH + " = " + Integer.toString(ym.getMonth());
+		String selection = KEY_DATES_YEAR + " = " + Integer.toString(ym.getYear() + 1900) + " AND " + KEY_DATES_MONTH + " = " + Integer.toString(ym.getMonth());
 		
 		this.openRead();
 		
@@ -286,8 +283,7 @@ public class ShiftCalDB {
 		while (cursor.moveToNext()) {
 			
 			Day d = new Day();
-			d.date.setYear(ym.getYear());
-			d.date.setMonth(ym.getMonth());
+			d.date = (Date) ym.clone();
 			d.date.setDate(cursor.getInt(cursor.getColumnIndex(KEY_DATES_DAY)));
 			d.shiftId = cursor.getInt(cursor.getColumnIndex(KEY_DATES_SHIFTID));
 			
@@ -304,6 +300,9 @@ public class ShiftCalDB {
 		
 		cursor.close();
 		this.close();
+		
+		System.err.println(ym.toString());
+		
 		return daysList;
 	}
 	
@@ -312,7 +311,7 @@ public class ShiftCalDB {
 		ContentValues v = new ContentValues();
 		v.put(KEY_DATES_DAY, d.date.getDate());
 		v.put(KEY_DATES_MONTH, d.date.getMonth());
-		v.put(KEY_DATES_YEAR, d.date.getYear());
+		v.put(KEY_DATES_YEAR, d.date.getYear() + 1900);
 		v.put(KEY_DATES_SHIFTID, d.shiftId);
 		
 		this.open();
@@ -322,7 +321,7 @@ public class ShiftCalDB {
 	
 	public void clearDay (Date d) {
 		
-		String whereClause = KEY_DATES_YEAR + " = " + Integer.toString(d.getYear()) + " AND " +
+		String whereClause = KEY_DATES_YEAR + " = " + Integer.toString(d.getYear() + 1900) + " AND " +
 							 KEY_DATES_MONTH + " = " + Integer.toString(d.getMonth()) + " AND " +
 							 KEY_DATES_DAY + " = " + Integer.toString(d.getDate());
 		

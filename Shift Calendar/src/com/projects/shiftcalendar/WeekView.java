@@ -68,7 +68,7 @@ public class WeekView extends LinearLayout {
 		
 		for (int i = 0; i < 7; i++) {
 			Date query = rollingDate.getTime();
-			query.setYear(rollingDate.get(Calendar.YEAR));
+			query.setYear(rollingDate.get(Calendar.YEAR) - 1900);
 			Shift sh = db.getShiftByDate(query);
 			
 			if (sh != null) {
