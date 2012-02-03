@@ -17,7 +17,6 @@ public class Day {
 		date.setDate(day);
 		this.shiftId = shiftId;
 		this.shiftSymbol = shiftSymbol;
-		
 	}
 	
 	public Day() {
