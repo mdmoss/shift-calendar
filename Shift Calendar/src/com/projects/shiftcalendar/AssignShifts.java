@@ -1,12 +1,16 @@
 package com.projects.shiftcalendar;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -17,6 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AssignShifts extends Activity {
+	
+	static final String intentMonthField = "launchMonth";
+	static final String intentYearField = "launchYear";
+	static final int intentNoMonth = -1;
 	
 	private OnClickListener monthRight = new OnClickListener() {
 
@@ -151,6 +159,16 @@ public class AssignShifts extends Activity {
 		shiftSelector.setOnItemSelectedListener(new ShiftSelectionListener());
 		
 		CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
+		
+		Intent i = getIntent();
+		int loaderMonth = i.getIntExtra(intentMonthField, intentNoMonth);
+		if (loaderMonth != intentNoMonth) {
+			
+			int loaderYear = i.getIntExtra(intentYearField, intentNoMonth);
+			cv.setCalendar(loaderMonth, loaderYear);
+		}
+		
+		
 		DateSquare dS = cv.ds;
 		List <DayView> allDays = dS.getAllSquares();
 		Iterator<DayView> iterDays = allDays.iterator();
@@ -159,5 +177,26 @@ public class AssignShifts extends Activity {
 			iterDays.next().setOnClickListener(DayPressListener);
 		}
 		
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.assign_shifts_menu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case (R.id.menu_edit_shifts):
+			Intent i = new Intent ();
+			ComponentName actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ManageShifts");
+			i.setComponent(actName);
+			startActivity(i);
+		
+		}
+		return true;
 	}
 }
