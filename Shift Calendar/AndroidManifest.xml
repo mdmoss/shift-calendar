@@ -23,7 +23,7 @@
         </activity>
         
         <activity
-            android:label="Month View"
+            android:label="Shift Calendar"
             android:name=".ViewMonth">
             
             <intent-filter >

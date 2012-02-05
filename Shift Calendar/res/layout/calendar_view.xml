@@ -64,7 +64,8 @@
 	    android:id="@+id/DateSquare"
 	    android:layout_height="fill_parent"
 	    android:layout_width="fill_parent"
-	    android:layout_below="@id/day_bar">
+	    android:layout_below="@id/day_bar"
+	    android:layout_alignParentBottom="true">
 	</com.projects.shiftcalendar.DateSquare>
     
 </RelativeLayout>

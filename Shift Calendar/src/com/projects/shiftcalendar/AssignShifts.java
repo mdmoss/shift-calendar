@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AssignShifts extends Activity {
+	
+	private static final String lastRunVersion = "Version";
 	
 	static final String intentMonthField = "launchMonth";
 	static final String intentYearField = "launchYear";
@@ -109,7 +112,7 @@ public class AssignShifts extends Activity {
 					}
 				} else {
 					
-					Toast.makeText(getApplicationContext(), "You havn't set any shift types yet. Try the 'Manage Shift Types' button on the main menu", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "You havn't set any shift types yet. Try 'Edit Shift Types' in the menu.", Toast.LENGTH_LONG).show();
 					
 				}
 			}
@@ -177,6 +180,18 @@ public class AssignShifts extends Activity {
 			iterDays.next().setOnClickListener(DayPressListener);
 		}
 		
+		// Check for version first run
+		SharedPreferences sp = getPreferences(MODE_PRIVATE);
+		if (sp.getFloat(lastRunVersion, 0) == 0) {
+			
+			// Store the latest run version
+			SharedPreferences.Editor edit = sp.edit();
+			edit.putFloat(lastRunVersion, (float) 1.1);
+			edit.commit();
+			
+			Toast.makeText(this, "Select 'Edit Shift Types' from the menu to add new types of shift.", Toast.LENGTH_LONG).show();
+		}
+
 	}
 	
 	@Override
