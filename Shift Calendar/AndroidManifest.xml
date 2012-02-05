@@ -26,23 +26,17 @@
             android:label="Month View"
             android:name=".ViewMonth">
             
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
         </activity>
         
         <activity
             android:label="Assign Shifts"
             android:name=".AssignShifts"
             android:screenOrientation="portrait">
-            
-        </activity>
-        
-        <activity
-            android:label="@string/app_name"
-            android:name=".MainMenu">
-        
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             
         </activity>
             
