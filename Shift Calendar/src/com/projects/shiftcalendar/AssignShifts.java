@@ -153,12 +153,6 @@ public class AssignShifts extends Activity {
 		monthBarLeft.setOnClickListener(monthLeft);
 		
 		Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
-		
-		ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
-		List<Shift> shifts = db.getAllShifts();
-		ArrayAdapter<Shift> adapter = new ArrayAdapter<Shift> (getApplicationContext(), android.R.layout.simple_spinner_item, shifts);
-		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		shiftSelector.setAdapter(adapter);
 		shiftSelector.setOnItemSelectedListener(new ShiftSelectionListener());
 		
 		CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
@@ -192,6 +186,20 @@ public class AssignShifts extends Activity {
 			Toast.makeText(this, "Select 'Edit Shift Types' from the menu to add new types of shift.", Toast.LENGTH_LONG).show();
 		}
 
+	}
+	
+	@Override
+	public void onResume() {
+
+		super.onResume();
+		
+		Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
+		ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
+		List<Shift> shifts = db.getAllShifts();
+		ArrayAdapter<Shift> adapter = new ArrayAdapter<Shift> (getApplicationContext(), android.R.layout.simple_spinner_item, shifts);
+		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		shiftSelector.setAdapter(adapter);
+		
 	}
 	
 	@Override
