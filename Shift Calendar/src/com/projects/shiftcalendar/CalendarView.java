@@ -252,7 +252,7 @@ public class CalendarView extends RelativeLayout {
 		
 		this.month = month;
 		this.year = year;
-		redrawCalendar();
+		// Calendar redrawing removed here to allow later optimisation
 		
 	}
 	
@@ -270,6 +270,7 @@ public class CalendarView extends RelativeLayout {
 		}
 		
 		this.setCalendar(month, year);
+		this.redrawCalendar();
 	}
 	
 	public void decreaseMonth() {
@@ -286,7 +287,7 @@ public class CalendarView extends RelativeLayout {
 		}
 		
 		this.setCalendar(month, year);
-		
+		this.redrawCalendar();
 	}
 	
 	public int getMonth() {

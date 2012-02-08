@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 public class AssignShifts extends Activity {
 	
+	ShiftCalDB db;
+	
 	private static final String lastRunVersion = "Version";
 	
 	static final String intentMonthField = "launchMonth";
@@ -35,7 +37,6 @@ public class AssignShifts extends Activity {
 			
 			CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
 			cv.increaseMonth();
-			
 		}
 	};
 	
@@ -146,6 +147,8 @@ public class AssignShifts extends Activity {
 		
 		setContentView(R.layout.assign_shifts);
 		
+		db = ((ShiftCalendar) getApplication()).getDB();
+		
 		View monthBarRight = findViewById(R.id.month_bar_right);
 		monthBarRight.setOnClickListener(monthRight);
 		
@@ -194,11 +197,12 @@ public class AssignShifts extends Activity {
 		super.onResume();
 		
 		Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
-		ShiftCalDB db = ((ShiftCalendar) getApplication()).getDB();
 		List<Shift> shifts = db.getAllShifts();
 		ArrayAdapter<Shift> adapter = new ArrayAdapter<Shift> (getApplicationContext(), android.R.layout.simple_spinner_item, shifts);
 		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		shiftSelector.setAdapter(adapter);
+		CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
+		cv.redrawCalendar();
 		
 	}
 	
