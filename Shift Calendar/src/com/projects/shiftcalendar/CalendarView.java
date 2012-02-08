@@ -69,7 +69,6 @@ public class CalendarView extends RelativeLayout {
 			dayNames[i].setGravity(Gravity.CENTER);
 		}
 		
-		
 		this.month = cal.get(Calendar.MONTH);
 		this.year = cal.get(Calendar.YEAR);
 	}

@@ -16,6 +16,10 @@ public class ViewMonth extends Activity {
 	
 	private static final String lastRunVersion = "Version";
 	
+	static final String intentMonthField = "launchMonth";
+	static final String intentYearField = "launchYear";
+	static final int intentNoMonth = -1;
+	
 	private OnClickListener monthRight = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -46,6 +50,15 @@ public class ViewMonth extends Activity {
 		
 		View monthBarLeft = findViewById(R.id.month_bar_left);
 		monthBarLeft.setOnClickListener(monthLeft);
+		
+		Intent i = getIntent();
+		int loaderMonth = i.getIntExtra(intentMonthField, intentNoMonth);
+		if (loaderMonth != intentNoMonth) {
+			
+			int loaderYear = i.getIntExtra(intentYearField, intentNoMonth);
+			CalendarView cv = (CalendarView) findViewById(R.id.assign_shifts_calendar);
+			cv.setCalendar(loaderMonth, loaderYear);
+		}
 		
 		// Check for version first run
 		SharedPreferences sp = getPreferences(MODE_PRIVATE);
@@ -78,6 +91,12 @@ public class ViewMonth extends Activity {
 		case (R.id.menu_assign_shifts):
 			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.AssignShifts");
 			i.setComponent(actName);
+			
+			CalendarView cv = (CalendarView) findViewById(R.id.view_month_calendar);
+			i.putExtra(AssignShifts.intentMonthField, cv.getMonth());
+			i.putExtra(AssignShifts.intentYearField, cv.getYear());
+			startActivity(i);
+			
 			startActivity(i);
 			break;
 		case (R.id.menu_modify_preferences):
