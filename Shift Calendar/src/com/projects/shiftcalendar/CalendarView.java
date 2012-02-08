@@ -257,10 +257,7 @@ public class CalendarView extends RelativeLayout {
 	}
 	
 	public void increaseMonth() {
-		
-		int month = this.month;
-		int year = this.year;
-		
+				
 		month++;
 		
 		if (month > 11) {
@@ -269,14 +266,10 @@ public class CalendarView extends RelativeLayout {
 			year++;
 		}
 		
-		this.setCalendar(month, year);
 		this.redrawCalendar();
 	}
 	
 	public void decreaseMonth() {
-		
-		int month = this.month;
-		int year = this.year;
 		
 		month--;
 		
@@ -286,7 +279,6 @@ public class CalendarView extends RelativeLayout {
 			year--;
 		}
 		
-		this.setCalendar(month, year);
 		this.redrawCalendar();
 	}
 	

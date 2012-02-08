@@ -229,6 +229,7 @@ public class AssignShifts extends Activity {
 			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ModifyPreferences");
 			i.setComponent(actName);
 			startActivity(i);
+			break;
 		}
 		return true;
 	}

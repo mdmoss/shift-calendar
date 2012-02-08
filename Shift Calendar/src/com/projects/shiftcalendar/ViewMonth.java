@@ -75,7 +75,7 @@ public class ViewMonth extends Activity {
 		ComponentName actName;
 		
 		switch (item.getItemId()) {
-		case (R.id.menu_edit_shifts):
+		case (R.id.menu_assign_shifts):
 			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.AssignShifts");
 			i.setComponent(actName);
 			startActivity(i);
@@ -84,6 +84,7 @@ public class ViewMonth extends Activity {
 			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ModifyPreferences");
 			i.setComponent(actName);
 			startActivity(i);
+			break;
 		}
 		return true;
 	}
