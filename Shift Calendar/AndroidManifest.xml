@@ -39,6 +39,11 @@
             android:screenOrientation="portrait">
             
         </activity>
+        
+        <activity 
+            android:label="Change Settings"
+            android:name=".ModifyPreferences">
+        </activity>
             
     </application>
 

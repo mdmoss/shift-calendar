@@ -71,18 +71,29 @@ public class ViewMonth extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		switch (item.getItemId()) {
-		case (R.id.menu_assign_shifts):
-			Intent i = new Intent ();
-			ComponentName actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.AssignShifts");
-			i.setComponent(actName);
-			
-			CalendarView cv = (CalendarView) findViewById(R.id.view_month_calendar);
-			i.putExtra(AssignShifts.intentMonthField, cv.getMonth());
-			i.putExtra(AssignShifts.intentYearField, cv.getYear());
-			startActivity(i);
+		Intent i = new Intent ();
+		ComponentName actName;
 		
+		switch (item.getItemId()) {
+		case (R.id.menu_edit_shifts):
+			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.AssignShifts");
+			i.setComponent(actName);
+			startActivity(i);
+			break;
+		case (R.id.menu_modify_preferences):
+			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ModifyPreferences");
+			i.setComponent(actName);
+			startActivity(i);
 		}
 		return true;
+	}
+	
+	@Override
+	public void onResume() {
+		
+		super.onResume();
+		CalendarView cv = (CalendarView) findViewById(R.id.view_month_calendar);
+		cv.redrawCalendar();
+		
 	}
 }

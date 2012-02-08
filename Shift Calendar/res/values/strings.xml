@@ -27,4 +27,6 @@
         <item>Sun</item>
     </string-array>
     
+    <string name="pref_first_day_of_week">first_day_of_week</string>    
+    
 </resources>

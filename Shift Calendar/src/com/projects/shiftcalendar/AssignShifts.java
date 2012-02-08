@@ -212,13 +212,19 @@ public class AssignShifts extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
+		Intent i = new Intent ();
+		ComponentName actName;
+		
 		switch (item.getItemId()) {
 		case (R.id.menu_edit_shifts):
-			Intent i = new Intent ();
-			ComponentName actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ManageShifts");
+			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ManageShifts");
 			i.setComponent(actName);
 			startActivity(i);
-		
+			break;
+		case (R.id.menu_modify_preferences):
+			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ModifyPreferences");
+			i.setComponent(actName);
+			startActivity(i);
 		}
 		return true;
 	}

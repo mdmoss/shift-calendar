@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:entries="@array/firstDayOfWeek"
+        android:title="First Day of Week"
+        android:summary="Change the first day of the week on the Calendar screen"
+        android:defaultValue="0"
+        android:entryValues="@array/firstDayOfWeekValues"
+        android:dialogTitle="First Day of Week"
+        android:key="@string/pref_first_day_of_week">
+        
+    </ListPreference>
+    
+</PreferenceScreen>

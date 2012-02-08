@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string-array name="firstDayOfWeek">
+        <item name="0">Monday</item>
+        <item name="6">Sunday</item>
+    </string-array>
+    
+    <string-array name="firstDayOfWeekValues">
+        <item name="0">0</item>
+        <item name="6">6</item>
+    </string-array>
+    
+</resources>

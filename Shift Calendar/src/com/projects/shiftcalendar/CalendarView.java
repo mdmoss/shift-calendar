@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -24,9 +25,6 @@ public class CalendarView extends RelativeLayout {
 	static final int Friday = 4;
 	static final int Saturday = 5;
 	static final int Sunday = 6;
-	
-	static final private String PREF_FILE = "ShiftCalendarCalendarViewPreferences";
-	static final private String PREF_KEY_WEEKSTART = "week start day";
 	
 	int month;
 	int year;
@@ -46,8 +44,8 @@ public class CalendarView extends RelativeLayout {
 	
 	public void loadCalendar (Context context) {
 		
-		SharedPreferences pref = context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
-		this.weekStartDay = pref.getInt(PREF_KEY_WEEKSTART, CalendarView.Monday);
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+		this.weekStartDay = Integer.parseInt(pref.getString(context.getString(R.string.pref_first_day_of_week), "2"));
 		
 		View.inflate(context, R.layout.calendar_view, this);
 		
@@ -71,10 +69,16 @@ public class CalendarView extends RelativeLayout {
 			dayNames[i].setGravity(Gravity.CENTER);
 		}
 		
-		this.setCalendar(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
+		
+		this.month = cal.get(Calendar.MONTH);
+		this.year = cal.get(Calendar.YEAR);
 	}
 	
 	public void redrawCalendar () {
+		
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+		
+		this.weekStartDay = Integer.parseInt(pref.getString(getContext().getString(R.string.pref_first_day_of_week), "2"));
 		
 		// Here's the magic
 		Calendar cal = Calendar.getInstance();
