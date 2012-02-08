@@ -78,7 +78,7 @@ public class CalendarView extends RelativeLayout {
 		
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
 		
-		this.weekStartDay = Integer.parseInt(pref.getString(getContext().getString(R.string.pref_first_day_of_week), "2"));
+		this.weekStartDay = Integer.parseInt(pref.getString(getContext().getString(R.string.pref_first_day_of_week), "0"));
 		
 		// Here's the magic
 		Calendar cal = Calendar.getInstance();
