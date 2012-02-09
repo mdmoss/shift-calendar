@@ -301,8 +301,6 @@ public class ShiftCalDB {
 		cursor.close();
 		this.close();
 		
-		System.err.println(ym.toString());
-		
 		return daysList;
 	}
 	
