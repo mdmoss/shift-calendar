@@ -96,9 +96,8 @@ public class ViewMonth extends Activity {
 			i.putExtra(AssignShifts.intentMonthField, cv.getMonth());
 			i.putExtra(AssignShifts.intentYearField, cv.getYear());
 			startActivity(i);
-			
-			startActivity(i);
 			break;
+			
 		case (R.id.menu_modify_preferences):
 			actName = new ComponentName("com.projects.shiftcalendar", "com.projects.shiftcalendar.ModifyPreferences");
 			i.setComponent(actName);
