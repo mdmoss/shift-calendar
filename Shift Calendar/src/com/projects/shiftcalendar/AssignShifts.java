@@ -31,6 +31,8 @@ public class AssignShifts extends Activity {
 	static final String intentYearField = "launchYear";
 	static final int intentNoMonth = -1;
 	
+	Shift selectedShift;
+	
 	private OnClickListener monthRight = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -59,19 +61,17 @@ public class AssignShifts extends Activity {
 			// If the day is legit ie. actually a square
 			int date = dV.getDate();
 			if (date != DayView.NO_DATE) {
+			
 				
-				Spinner shiftSelector = (Spinner) findViewById(R.id.assign_shifts_shift_selector);
-				Shift selected = (Shift) shiftSelector.getSelectedItem();
-				
-				if (selected != null) {
-				
-					if (selected.id != dV.shiftId) {
+				if (selectedShift != null) {
+					
+					if (selectedShift.id != dV.shiftId) {
 						// A new type of shift is selected, update UI
-						dV.setLabelText(selected.symbol);
-						dV.setLabelColor(selected.color);
-						dV.shiftId = selected.id;
+						dV.setLabelText(selectedShift.symbol);
+						dV.setLabelColor(selectedShift.color);
+						dV.shiftId = selectedShift.id;
 						
-					} else if (selected.id == dV.shiftId){
+					} else if (selectedShift.id == dV.shiftId){
 						// Same shift is selected. Clear square
 						dV.setLabelText("");
 						dV.shiftId = DayView.NO_SHIFT;
@@ -90,33 +90,27 @@ public class AssignShifts extends Activity {
 					focus.setDate(date);
 					
 					Shift sh = db.getShiftByDate(focus);
-					
-					if (selected != null) {
-						
-						// UI update first
 	
-						Day newDay = new Day(cv.year, cv.month, date, selected.id, selected.symbol);
-						
-						if (sh == null) {
-							db.clearDay(focus);
-							db.setDayShift (newDay);
-						
-						} else if (sh.id != selected.id) {
-							db.clearDay(focus);
-							db.setDayShift (newDay);
-							
-						} else {
-							// Shifts are the same
-							db.clearDay(focus);
-						}
+					Day newDay = new Day(cv.year, cv.month, date, selectedShift.id, selectedShift.symbol);
+					
+					db.clearDay(focus);
+					
+					if (sh == null) {
+						db.setDayShift (newDay);
+					
+					} else if (sh.id != selectedShift.id) {
+						db.setDayShift (newDay);
 						
 					}
+						
+					
 				} else {
 					
 					Toast.makeText(getApplicationContext(), "You havn't set any shift types yet. Try 'Edit Shift Types' in the menu.", Toast.LENGTH_LONG).show();
 					
 				}
 			}
+			
 		}
 	};
 	
@@ -132,6 +126,8 @@ public class AssignShifts extends Activity {
 			symbolSpot.setText(selected.symbol);
 			symbolSpot.setTextColor(selected.color);
 			symbolSpot.setVisibility(View.VISIBLE);
+			
+			selectedShift = selected;
 		}
 
 		public void onNothingSelected(AdapterView<?> arg0) {

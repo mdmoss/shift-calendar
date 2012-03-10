@@ -315,6 +315,7 @@ public class ShiftCalDB {
 		this.open();
 		db.insert(DATABASE_DATES_TABLE, null, v);
 		this.close();
+		
 	}
 	
 	public void clearDay (Date d) {

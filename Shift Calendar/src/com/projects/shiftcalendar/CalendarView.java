@@ -96,6 +96,7 @@ public class CalendarView extends RelativeLayout {
 			for (int x = 0; x < 7; x++) {
 				
 				DayView currentDay = ds.getSquareByPos (x, y);
+				currentDay.shiftId = DayView.NO_SHIFT;
 				
 				MarginLayoutParams dayMargins = (MarginLayoutParams) currentDay.getLayoutParams();
 				
