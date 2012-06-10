@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -83,6 +84,8 @@ public class CalendarView extends RelativeLayout {
 		Calendar cal = Calendar.getInstance();
 		cal.set (year, month, 1);
 		
+		Calendar currentDate = Calendar.getInstance();
+		
 		// Find the square of the first day of the month by day
 		int XCoord = getFirstXCoord(year, month);
 		
@@ -111,29 +114,32 @@ public class CalendarView extends RelativeLayout {
 					}
 					
 				} else if (daysDrawn < totalDays) {
-					currentDay.setDate (daysDrawn + 1);
 					daysDrawn++;
+					currentDay.setDate (daysDrawn);
 					currentDay.setLabelText("");
 					dayMargins.setMargins(1, 1, 1, 1);
 					
 					if (y == 0) {
-						
 						dayMargins.topMargin++;
 					}
-					
 					if (x == 6) {
-						
 						dayMargins.rightMargin++;
 					}
-					
 					if (x == 0) {
-						
 						dayMargins.leftMargin++;
 					}
-					
 					if (y == 5) {
-						
 						dayMargins.bottomMargin++;
+					}
+					
+					// Highlight the current day
+					if (currentDate.get(Calendar.YEAR) == year &&
+							currentDate.get(Calendar.MONTH) == month &&
+							currentDate.get(Calendar.DAY_OF_MONTH) == daysDrawn) {
+						
+						currentDay.setDateColor(Color.WHITE);
+					} else {
+						currentDay.setDateColor(Color.GRAY);
 					}
 					
 					
