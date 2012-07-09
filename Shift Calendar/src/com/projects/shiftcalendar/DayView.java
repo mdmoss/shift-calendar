@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;

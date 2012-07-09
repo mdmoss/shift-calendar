@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;

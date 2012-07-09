@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 

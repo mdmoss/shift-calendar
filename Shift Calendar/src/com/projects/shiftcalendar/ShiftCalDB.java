@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import android.text.format.Time;
 
 public class Shift {

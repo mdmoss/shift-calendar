@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

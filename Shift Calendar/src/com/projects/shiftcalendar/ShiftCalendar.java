@@ -1,5 +1,8 @@
 package com.projects.shiftcalendar;
-
+/**
+ * @author Matthew Moss
+ *
+ */
 import android.app.Application;
 
 public class ShiftCalendar extends Application {
