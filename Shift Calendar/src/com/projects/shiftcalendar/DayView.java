@@ -7,59 +7,60 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class DayView extends RelativeLayout {
-	
+
 	public static final int NO_DATE = -1;
 	public static final int NO_SHIFT = -1;
-	
+
 	private int date = NO_DATE;
-	
+
 	public int shiftId = NO_SHIFT;
-	
-	public DayView (Context context) {
-		
-		super (context);
-		LayoutInflater.from(getContext()).inflate(R.layout.day_view, this, true);
+
+	public DayView(Context context) {
+
+		super(context);
+		LayoutInflater.from(getContext())
+				.inflate(R.layout.day_view, this, true);
 	}
-	
-	public DayView (Context context, AttributeSet attrs) {
-		
-		super (context, attrs);
-		LayoutInflater.from(getContext()).inflate(R.layout.day_view, this, true);
+
+	public DayView(Context context, AttributeSet attrs) {
+
+		super(context, attrs);
+		LayoutInflater.from(getContext())
+				.inflate(R.layout.day_view, this, true);
 	}
-	
-	public void setDate (int newDate) {
-		
+
+	public void setDate(int newDate) {
+
 		TextView t = (TextView) this.findViewById(R.id.day_view_date);
 		date = newDate;
-		
+
 		if (date != NO_DATE) {
 			t.setText(String.valueOf(newDate));
 		} else {
 			t.setText("");
 		}
 	}
-	
-	public void setDateColor (int newColor) {
+
+	public void setDateColor(int newColor) {
 
 		TextView t = (TextView) this.findViewById(R.id.day_view_date);
 		t.setTextColor(newColor);
 	}
-	
-	public void setLabelText (String newtext) {
-		
+
+	public void setLabelText(String newtext) {
+
 		TextView t = (TextView) this.findViewById(R.id.day_view_label);
 		t.setText(newtext);
 	}
-	
-	public void setLabelColor (int newColor) {
-		
+
+	public void setLabelColor(int newColor) {
+
 		TextView t = (TextView) this.findViewById(R.id.day_view_label);
 		t.setTextColor(newColor);
 	}
-	
-	public int getDate () {
-		
+
+	public int getDate() {
+
 		return date;
 	}
 }
-
