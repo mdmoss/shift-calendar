@@ -61,6 +61,11 @@ public class DayView extends RelativeLayout {
 		TextView t = (TextView) this.findViewById(R.id.day_view_label);
 		t.setTextColor(newColor);
 	}
+	
+	public void setLabelFontSize (int newSize) {
+		TextView t = (TextView) this.findViewById(R.id.day_view_label);
+		t.setTextSize(newSize);
+	}
 
 	public int getDate() {
 
