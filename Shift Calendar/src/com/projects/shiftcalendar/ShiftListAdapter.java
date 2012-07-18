@@ -28,9 +28,7 @@ public class ShiftListAdapter extends BaseAdapter {
 
 	public int getCount() {
 
-		int entryCount = this.db.getEntryCount();
-
-		return entryCount;
+		return this.db.getEntryCount();
 	}
 
 	public Shift getItem(int id) {
