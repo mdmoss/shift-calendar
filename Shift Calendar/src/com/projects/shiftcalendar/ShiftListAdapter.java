@@ -32,16 +32,10 @@ public class ShiftListAdapter extends BaseAdapter {
 	}
 
 	public Shift getItem(int id) {
-
-		Shift ret;
-
+		Shift ret = null;
 		if (id >= 0 && id < shiftList.size()) {
-
 			ret = shiftList.get(id);
-		} else {
-			ret = null;
 		}
-
 		return ret;
 	}
 
